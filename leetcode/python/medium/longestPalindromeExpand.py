@@ -4,43 +4,27 @@
 You may assume that the maximum length of s is 1000.
 '''
 
-def isPalindrome(s, start_index, last_index):
-	if start_index == last_index:
-		return True
-	elif last_index == start_index + 1 and s[last_index] == s[start_index]:
-		return True
-	else:
-		if s[last_index] != s[start_index]:
-			return False
-		else:
-			return isPalindrome(s, start_index + 1, last_index - 1)
-
+def expandAroundCenter(s, left, right):
+	L = left
+	R = right
+	while L >= 0 and R < len(s) and s[L] is s[R]:
+		L -= 1
+		R += 1
+	return R - L - 1
 
 def longestPalindrome(s):
-	if len(s) is 1:
-		return s
-	longest_length = 0
-	palindrome = s[0]
-	for i in range(0, len(s)):
-		if s[i] in s[i+1:]:
-			n_index = s.rfind(s[i])
-			while(n_index > i):
-				if not isPalindrome(s, i, n_index):
-					n_index = s.rfind(s[i], i, n_index)
-				else:
-					length = n_index - i + 1
-					if length > longest_length:
-						longest_length = length
-						palindrome = s[i:n_index+1]
-					if length == len(s):
-						return palindrome
-					break
-	
-	return palindrome
-				
-			
+	start, end = 0, 0
+	for i in range(len(s) - 1):
+		len1 = expandAroundCenter(s, i, i + 1)
+		len2 = expandAroundCenter(s, i, i)
+		max_len = max(len1, len2)
+		if max_len > end - start:
+			start = i - ((max_len - 1)/2)
+			end = i + (max_len/2)
+	return s[start : end + 1]
 
+#s = "abadfg"
 s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-print s
-print isPalindrome(s, 1, 5)
-print longestPalindrome(s)
+a = longestPalindrome(s)
+print a
+print len(a)
