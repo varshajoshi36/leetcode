@@ -2,7 +2,7 @@
 
 def intToPython(num):
 	roman = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
-        r_to_int = [1, 5, 10, 50, 100, 500, 1000]
+	r_to_int = [1, 5, 10, 50, 100, 500, 1000]
 	roman_num = ""
 	while num > 0:
 		division = 0
