@@ -5,14 +5,12 @@ class DetectCycle(object):
 		if head is None:
 			return False
 		tortoise = head
-		hare = head.next
+		hare = head
 
-		while tortoise != hare:
-			if tortoise.next is None or hare.next is None:
-				return False
-			elif hare.next.next is None:
-				return False
+		while hare.next is not None and hare.next.next is not None:
 			tortoise = tortoise.next
 			hare = hare.next.next
+			if tortoise == hare:
+				return True
 
-		return True
+		return False
