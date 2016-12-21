@@ -8,7 +8,7 @@ Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node wi
 
 
 class DeleteNode(object):
-	def deleteNode(node):
+	def deleteNode(self, node):
 		while node.next is not None:
 			while node.next is not None:
                         	if node.next.next is None:
