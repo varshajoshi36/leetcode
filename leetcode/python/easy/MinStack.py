@@ -25,6 +25,7 @@ class MinStack(object):
 	pop = self.stack[len(self.stack) - 1]
         if pop is self.getMin():
                 self.minimum.pop()
+	self.stack.pop()
     
     def top(self):
     	if len(self.stack) is 0:
@@ -32,7 +33,7 @@ class MinStack(object):
 	return self.stack[len(self.stack) - 1]
 
     def getMin(self):
-	if len(self.stack) == 0:
+	if len(self.minimum) == 0:
 		return None
 
 	return self.minimum[len(self.minimum) - 1]
