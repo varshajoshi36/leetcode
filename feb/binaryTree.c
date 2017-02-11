@@ -15,6 +15,7 @@ void postorder(node *);
 void inorder(node *);
 node* printPath(node **, int);
 node* search(node **, int);
+void deleteTree(node *);
 
 int main(){
 	node *root;
@@ -39,6 +40,7 @@ int main(){
 	//node * rnode = search(&root, 15);
 	node * rnode = printPath(&root, 17);
 	printf("%d\n", rnode->data);
+	deleteTree(root);
 	return 0;
 }
 
@@ -108,11 +110,20 @@ node* search(node ** tree, int val) {
 	if(!(*tree)) {
 		return NULL;
 	}
-	if(val == (*tree)->data) {
+	if(val == (*tree) -> data) {
 		return *tree;
-	} else if(val < (*tree)->data) {
-		search(&((*tree)->left), val);
+	} else if(val < (*tree) -> data) {
+		search(&((*tree) -> left), val);
 	} else if(val > (*tree)->data){
-		search(&((*tree)->right), val);
+		search(&((*tree) -> right), val);
 	}
+}
+
+void deleteTree(node * tree){
+	if(tree){
+		deleteTree(tree -> left);
+		deleteTree(tree -> right);
+		printf("Deleting node %d\n",tree -> data);
+		free(tree);
+	}	
 }
