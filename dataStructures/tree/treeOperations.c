@@ -74,3 +74,23 @@ node* deleteNode(node* root, int val){
 	}
 	return root;
 }
+
+
+int closestMatch(node* root, int val){
+	if(root != NULL){
+		int next_val;
+		if(val < root -> data){
+		    next_val = closestMatch(root -> left, val);
+		}else if(val > root -> data){
+		    next_val = closestMatch(root -> right, val);
+		}else{
+		    return root -> data;
+		}
+		if(abs(root -> data - val) < abs(next_val - val)){
+			return root -> data;
+		}else{
+			return next_val;
+		}
+    }else
+        return INT_MAX;
+}

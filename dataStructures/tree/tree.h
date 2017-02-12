@@ -1,5 +1,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
 
 struct bnode{
         int data;
@@ -31,3 +33,6 @@ void iteInorder(node *);
 node* getMinNode(node *);
 node* inorderSuccessor(node*, node*);
 int kThSmallest(node *, int);
+void ItPostorderOneStack(node*);
+node* peek(lnode*);
+int closestMatch(node*, int);

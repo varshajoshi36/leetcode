@@ -22,6 +22,10 @@ node* pop(lnode** top_ref){
 	return res;
 }
 
+node* peek(lnode* top){
+	return top -> tnode;
+}
+
 bool isEmpty(lnode *top){
    return (top == NULL)? 1 : 0;
 }   

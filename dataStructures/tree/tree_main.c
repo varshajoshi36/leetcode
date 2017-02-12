@@ -37,8 +37,10 @@ int main(){
         node * rnode = printPath(&root, 17);
         printf("%d\n", rnode->data);
         
+	int closest1 = closestMatch(root, 18);
+	printf("\nClosest: %d\n", closest1);
 	deleteTree(root);
-        
+ 
 	//tree 2:
 	int num[12] = {22,20,14,21,13,19,7,5,11,17,16,18};
 	node* root2 = NULL;
@@ -52,6 +54,12 @@ int main(){
         inorder(root2);
 	int kthSmallest = kThSmallest(root2, 3);
 	printf("3rd smallest node: %d", kthSmallest);
+	printf("\npostorder traversal with one stack: \n");
+	itPostorder(root2);
+	printf("\n");
+	ItPostorderOneStack(root2);
+	int closest = closestMatch(root2, 12);
+	printf("\nClosest: %d\n", closest);
 	printf("\n");
 	return 0;
 }
