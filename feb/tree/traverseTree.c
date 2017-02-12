@@ -138,6 +138,7 @@ int kThSmallest(node *tree, int k){
 	bool done = 0;
 	lnode* sortedList = NULL;
 	int size = 0;
+	int kThSmallest = -1;
 	while(!done){
 		if(current != NULL){
 			push(&stack, current);
@@ -147,17 +148,19 @@ int kThSmallest(node *tree, int k){
 				node* tnode = pop(&stack);
 				push(&sortedList, tnode);
 				size++;
+				if (size == k)
+					return tnode -> data;
 				current = tnode -> right;
 			}else{
 				done = 1;
 			}
 		}
 	}
-	int i = size;
+	/*int i = size;
 	node* kThSmallest = NULL;
 	while(i >= k){
 		kThSmallest = pop(&sortedList);
 		i--;
-	}
-	return kThSmallest -> data;
+	}*/
+	return kThSmallest;
 }
