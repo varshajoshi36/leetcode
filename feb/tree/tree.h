@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdlib.h>
 
 struct bnode{
         int data;
@@ -7,9 +8,9 @@ struct bnode{
 };
 
 struct lnode{
-        int data;
+	int data;
 	struct bnode* tnode;
-        struct lnode* next;
+	struct lnode* next;
 };
 
 typedef struct bnode node;
@@ -27,3 +28,6 @@ bool isEmpty(lnode*);
 node* pop(lnode**);
 void push(lnode**, node *);
 void iteInorder(node *);
+node* getMinNode(node *);
+node* inorderSuccessor(node*, node*);
+int kThSmallest(node *, int);
