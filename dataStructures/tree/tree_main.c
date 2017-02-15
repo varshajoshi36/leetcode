@@ -42,11 +42,18 @@ int main(){
 	deleteTree(root);
  
 	//tree 2:
+	printf("*** tree2");
 	int num[12] = {22,20,14,21,13,19,7,5,11,17,16,18};
 	node* root2 = NULL;
 	int i;
 	for(i = 0; i<12; i++)
 		insert(&root2, num[i]);
+	printf("\nPreorder\n");
+        preorder(root2);
+        
+	printf("\nIterative preorder:\n");
+	itPreorder(root2);
+	
 	node* tnode = search(&root2, 14);
 	node* succ = inorderSuccessor(root2, tnode);
 	printf("Inorder successor of %d is %d\n", tnode -> data, succ -> data);

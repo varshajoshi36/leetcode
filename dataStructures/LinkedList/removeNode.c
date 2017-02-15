@@ -13,15 +13,18 @@ void printList(lnode*);
 void addNode(lnode**, int);
 
 int main(){
-	int nums[11] = {1,1,1,2,2,1,3,2,4,2,1};
+	int nums[4] = {1,1,2,1};
 	int i;
 	lnode* head = NULL;
-	for(i = 0; i < 11; i++)
+	for(i = 0; i < 4; i++)
 		addNode(&head, nums[i]);
 
 	printList(head);
 	lnode* newHead = removeNodes(head, 1);
-	printList(newHead);
+	if(newHead)
+		printList(newHead);
+	else
+		printf("List empty\n");
 	return 0;
 }
 
