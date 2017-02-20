@@ -39,14 +39,19 @@ int main(){
         
 	int closest1 = closestMatch(root, 18);
 	printf("\nClosest: %d\n", closest1);
+	lnode* stack = NULL;
+	int min_sum = minPath(root);
+	int sum = 0;
+	printf("Min sum Path: %d\n",min_sum);
+	printMinPath(root, stack, min_sum, &sum);
 	deleteTree(root);
  
 	//tree 2:
 	printf("*** tree2");
-	int num[12] = {22,20,14,21,13,19,7,5,11,17,16,18};
+	int num[13] = {22,20,14,21,13,19,7,5,11,17,16,18,23};
 	node* root2 = NULL;
 	int i;
-	for(i = 0; i<12; i++)
+	for(i = 0; i < 13; i++)
 		insert(&root2, num[i]);
 	printf("\nPreorder\n");
         preorder(root2);
@@ -64,9 +69,22 @@ int main(){
 	printf("\npostorder traversal with one stack: \n");
 	itPostorder(root2);
 	printf("\n");
-	ItPostorderOneStack(root2);
+	lnode* stack1 = NULL;
+        int min_sum1 = minPath(root);
+        printf("MinSum: %d\n", min_sum1);
+	int sum1 = 0;
+        printf("Min sum Path2: \n");          
+        printMinPath(root2, stack1, min_sum1, &sum1);	
 	int closest = closestMatch(root2, 12);
 	printf("\nClosest: %d\n", closest);
 	printf("\n");
+	
+	//tree 3
+	int num2[9] = {5,3,7,2,4,6,8,1,10};
+	node* root3 = NULL;
+	for(i = 0; i < 9; i++)
+	                insert(&root3, num2[i]);
+	int sum3 = sumAtDepth(root3, 0);
+	printf("tree3 sum at node 3: %d\n", sum3);
 	return 0;
 }

@@ -67,3 +67,44 @@ int kThSmallest(node *tree, int k){
 	}
 	return kThSmallest;
 }
+
+int minPath(node* root){
+	if(root == NULL)
+		return 0;
+
+	int sum = root -> data;
+
+	int left_sum = minPath(root -> left);
+	int right_sum = minPath(root -> right);
+
+	if(left_sum < right_sum)
+		sum += left_sum;
+	else
+		sum += right_sum;
+
+	return sum;
+}
+
+void printMinPath(node* root, lnode* stack, int minsum, int* sum){
+	if(root != NULL){
+		push(&stack, root);
+		*sum += root -> data;
+		if(*sum == minsum){
+			while(!isEmpty(stack)){
+				node* pnode = pop(&stack);
+				if(pnode)
+					printf("-> %d", pnode -> data);
+			}
+			printf("\n");
+			return;
+		}
+		printMinPath(root -> left, stack, minsum, sum);
+		printMinPath(root -> right, stack, minsum, sum);
+		if(!isEmpty(stack))
+			pop(&stack);
+		*sum -= root -> data;
+	}else{
+		return;
+	}
+
+}

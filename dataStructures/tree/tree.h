@@ -36,3 +36,6 @@ int kThSmallest(node *, int);
 void ItPostorderOneStack(node*);
 node* peek(lnode*);
 int closestMatch(node*, int);
+int minPath(node *);
+void printMinPath(node *, lnode *, int , int *);
+int sumAtDepth(node*, int);
