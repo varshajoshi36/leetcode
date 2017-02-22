@@ -1,22 +1,21 @@
+
 #! /usr/bin/python
+import sys
 
 def MinimumSum(s, nums):
-	min_no = len(nums)
-	index = 0
-	while index < len(nums):
-		loc_min = nums[index]
-		loc_count = 1
-		loc_ind = index + 1
-		while loc_min < s and loc_count < min_no and loc_ind < len(nums):
-			loc_min += nums[loc_ind]
-			loc_ind += 1
-			loc_count += 1
-			
-		if loc_count < min_no and loc_min >= s:
-			min_no = loc_count
-		index += 1
-
-	return min_no
+	i, j, loc_sum, min_len = 0, 0, 0, sys.maxint
+	while j < len(nums):
+		while (j < len(nums) and loc_sum < s):
+			loc_sum += nums[j]
+			j += 1
+		if(loc_sum >= s):
+			while (loc_sum >= s and i < j):
+				loc_sum -= nums[i]
+				i += 1
+			min_len = min(min_len, j - i + 1)
+	if loc_sum == sys.maxint:
+		return 0
+	return min_len
 
 s, nums = 7, [2,3,1,2,4,3]
 print MinimumSum(s, nums)
