@@ -11,7 +11,7 @@ Given an array where elements are sorted in ascending order, convert it to a hei
 
 class Solution(object):
     def recSortedToBST(self, start, end, nums, root):
-        while start < end:
+        if start < end:
             mid = (start + end)/2
             tempNode = root
             while tempNode != None:
