@@ -32,4 +32,17 @@ def removeDuplicates(nums):
     if last_element_count > 1:
         return last_index + 2
     else:
-        return last_index + 1 
+        return last_index + 1
+
+# from leetcode
+def shortRemoveDuplicates(nums):
+    i = 0
+    for n in nums:
+        if i < 2 or n > nums[i-2]:
+            nums[i] = n
+            i += 1
+    print nums
+    return i
+
+nums = [1,1,1,2,2,2]
+print shortRemoveDuplicates(nums)
