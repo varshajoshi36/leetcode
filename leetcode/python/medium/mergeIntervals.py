@@ -54,8 +54,20 @@ def merge(intervals):
     else:
         return intervals
 
+def mergeEff(intervals):
+	if len(intervals) is 0:
+		return []
+	intervals.sort()
+	res = [intervals[0]]
+	for interval in intervals[1:]:
+		if res[-1][1] < interval[0]:
+			res.append(interval)
+		else:
+			res[-1][1] = max(res[-1][1], interval[1])
+	return res
+
 def main():
-    print merge([[1,4],[0,4]])
+    print mergeEff([[1,4],[0,4]])
 
 if __name__ == '__main__':
     main()
