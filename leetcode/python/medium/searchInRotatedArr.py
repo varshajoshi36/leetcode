@@ -37,6 +37,3 @@ def search(nums, target):
 
 nums = [5, 6, 7, 8, 9, 3, 4]
 print search(nums, 3)
-
-
-
