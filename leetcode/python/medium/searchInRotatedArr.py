@@ -32,6 +32,7 @@ def search(nums, target):
 			start = mid + 1
 		else:
 			end = mid - 1
+	return -1
 	
 
 
